@@ -1,7 +1,11 @@
 import React from "react";
 import fakeNewsImage from "@/public/fake-news.jpg";
 
-const HomeSection = ({ id }: { id: string }) => {
+interface HomeSectionProps {
+  id: string;
+}
+
+const HomeSection = ({ id }: HomeSectionProps) => {
   return (
     <section id={id} className="w-full h-screen md:h-[60vh] relative">
       <div className="w-full h-full">

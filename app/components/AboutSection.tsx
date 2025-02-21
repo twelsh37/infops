@@ -1,8 +1,12 @@
 import React from "react";
 
-const AboutSection = () => {
+interface AboutSectionProps {
+  id: string;
+}
+
+const AboutSection = ({ id }: AboutSectionProps) => {
   return (
-    <section id="about" className="py-10">
+    <section id={id} className="py-10">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl font-bold mb-4 sm:text-3xl text-center">
           About

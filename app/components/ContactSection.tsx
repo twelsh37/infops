@@ -1,8 +1,12 @@
 import React from "react";
 
-const ContactSection = () => {
+interface ContactSectionProps {
+  id: string;
+}
+
+const ContactSection = ({ id }: ContactSectionProps) => {
   return (
-    <section id="contact" className="py-10 bg-gray-100">
+    <section id={id} className="py-10 bg-gray-100">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl font-bold mb-4 sm:text-3xl text-center">
           Contact
