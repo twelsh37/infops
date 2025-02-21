@@ -4,15 +4,13 @@ import ArticlesSection from "./components/ArticlesSection";
 import ContactSection from "./components/ContactSection";
 import AboutSection from "./components/AboutSection";
 
-const Home = () => {
+export default function Home() {
   return (
-    <div>
+    <>
       <HomeSection id="home" />
-      <ArticlesSection id="articles" />
+      <ArticlesSection />
       <ContactSection id="contact" />
       <AboutSection id="about" />
-    </div>
+    </>
   );
-};
-
-export default Home;
+}
