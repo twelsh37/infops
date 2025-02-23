@@ -31,7 +31,17 @@ async function getArticle(id: number): Promise<Article | undefined> {
     .from(articlesTable)
     .where(eq(articlesTable.id, id))
     .limit(1);
-  return article[0];
+
+  // Type assertion to ensure citations matches the Article interface
+  if (article[0]) {
+    return {
+      ...article[0],
+      citations: article[0].citations as
+        | Array<{ number: number; url: string }>
+        | undefined,
+    };
+  }
+  return undefined;
 }
 
 export default async function ArticlePage({

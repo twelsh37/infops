@@ -1,5 +1,5 @@
 import React from "react";
-import fakeNewsImage from "@/public/fake-news.jpg";
+import Image from "next/image";
 
 interface HomeSectionProps {
   id: string;
@@ -8,11 +8,14 @@ interface HomeSectionProps {
 const HomeSection = ({ id }: HomeSectionProps) => {
   return (
     <section id={id} className="w-full h-screen md:h-[60vh] relative">
-      <div className="w-full h-full">
-        <img
-          src={fakeNewsImage.src}
+      <div className="w-full h-full relative">
+        <Image
+          src="/fake-news.jpg"
           alt="Information warfare illustration"
-          className="w-full h-full object-cover object-center"
+          fill
+          priority
+          className="object-cover object-top"
+          sizes="100vw"
         />
         {/* 60% opaque black overlay */}
         <div className="absolute inset-0 bg-black/60" />
