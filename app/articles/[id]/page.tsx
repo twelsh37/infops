@@ -21,58 +21,58 @@ const articles: Article[] = [
     title: "# The Evolution of Russian Cyber Warfare",
     description:
       "## From the 2007 Estonia Incidents to Modern Hybrid Conflict Strategies",
-    content: `The 2007 cyberattacks against Estonia marked a watershed moment in modern warfare, demonstrating how digital tools could be weaponized to disrupt national infrastructure, destabilize societies, and project geopolitical influence. This incident, triggered by Estonia’s relocation of a Soviet-era monument, revealed the Kremlin’s willingness to leverage cyber operations as part of a broader hybrid warfare strategy. Since then, Russia has refined and replicated these tactics across multiple conflicts, from Georgia in 2008 to Ukraine’s ongoing struggle against invasion. This report examines the 2007 Estonia cyber incidents, analyzes their implications for international security, and traces the evolution of Russian cyber strategies over the past two decades.  
+    content: `The 2007 cyberattacks against Estonia marked a watershed moment in modern warfare, demonstrating how digital tools could be weaponized to disrupt national infrastructure, destabilize societies, and project geopolitical influence. This incident, triggered by Estonia's relocation of a Soviet-era monument, revealed the Kremlin's willingness to leverage cyber operations as part of a broader hybrid warfare strategy. Since then, Russia has refined and replicated these tactics across multiple conflicts, from Georgia in 2008 to Ukraine's ongoing struggle against invasion. This report examines the 2007 Estonia cyber incidents, analyzes their implications for international security, and traces the evolution of Russian cyber strategies over the past two decades.  
 
 ---
 
 ## The 2007 Cyberattacks on Estonia: A Blueprint for Modern Hybrid Warfare  
 
 ### Context and Catalysts  
-The immediate catalyst for the 2007 attacks was Estonia’s decision to relocate the Bronze Soldier of Tallinn, a Soviet World War II memorial, from the city center to a military cemetery. This move sparked protests among Estonia’s ethnic Russian minority and triggered diplomatic tensions with Moscow[1][7]. While physical riots erupted in Tallinn, a far more insidious threat emerged in cyberspace. Between April 27 and May 18, 2007, coordinated distributed denial-of-service (DDoS) attacks overwhelmed Estonian government portals, financial institutions, media outlets, and critical services. At their peak, these attacks reached 4 million packets per second—an unprecedented scale at the time—rendering online banking, parliamentary communications, and news dissemination temporarily inoperable[1][12].  
+The immediate catalyst for the 2007 attacks was Estonia's decision to relocate the Bronze Soldier of Tallinn, a Soviet World War II memorial, from the city center to a military cemetery. This move sparked protests among Estonia's ethnic Russian minority and triggered diplomatic tensions with Moscow[1][7]. While physical riots erupted in Tallinn, a far more insidious threat emerged in cyberspace. Between April 27 and May 18, 2007, coordinated distributed denial-of-service (DDoS) attacks overwhelmed Estonian government portals, financial institutions, media outlets, and critical services. At their peak, these attacks reached 4 million packets per second—an unprecedented scale at the time—rendering online banking, parliamentary communications, and news dissemination temporarily inoperable[1][12].  
 
 ### Nature and Impact of the Attacks  
 The attacks employed botnets—networks of hijacked computers—to flood Estonian servers with traffic. Notably, the campaign evolved in sophistication:  
-1. **Phase One**: Defacement of political websites, including a forged apology letter from Prime Minister Andrus Ansip on his party’s website[2][7].  
+1. **Phase One**: Defacement of political websites, including a forged apology letter from Prime Minister Andrus Ansip on his party's website[2][7].  
 2. **Phase Two**: Sustained DDoS strikes targeting 58 domains simultaneously, including the Estonian Parliament, banks, and telecommunications providers[5][10].  
 
-While the economic impact was modest (estimated at $1.3 million), the psychological effect proved profound. As Liisa Past, a cybersecurity expert involved in Estonia’s response, noted: “Cyber aggression creates confusion while staying below the threshold of armed conflict”[12]. The attacks exposed vulnerabilities in digital infrastructure and underscored the challenges of attributing cyber operations—Russian officials denied involvement despite clear technical evidence linking the attacks to Russian IP addresses and language[7][10].  
+While the economic impact was modest (estimated at $1.3 million), the psychological effect proved profound. As Liisa Past, a cybersecurity expert involved in Estonia's response, noted: "Cyber aggression creates confusion while staying below the threshold of armed conflict"[12]. The attacks exposed vulnerabilities in digital infrastructure and underscored the challenges of attributing cyber operations—Russian officials denied involvement despite clear technical evidence linking the attacks to Russian IP addresses and language[7][10].  
 
 ### Responses and Lessons Learned  
-Estonia’s countermeasures set precedents for cyber defense:  
-- **Technical**: Blocking foreign IP addresses and collaborating with NATO’s emerging cyber defense experts[12].  
+Estonia's countermeasures set precedents for cyber defense:  
+- **Technical**: Blocking foreign IP addresses and collaborating with NATO's emerging cyber defense experts[12].  
 - **Institutional**: Establishing the NATO Cooperative Cyber Defence Centre of Excellence (CCDCOE) in Tallinn, which later produced the *Tallinn Manual* governing cyber conflict under international law[7][10].  
 - **Strategic**: Prioritizing digital resilience through nationwide e-governance reforms and public-private partnerships[3][12].  
 
-The incident demonstrated that even small states could develop robust cyber defenses, but it also revealed NATO’s unpreparedness to classify cyberattacks as acts warranting collective defense under Article 5[12].  
+The incident demonstrated that even small states could develop robust cyber defenses, but it also revealed NATO's unpreparedness to classify cyberattacks as acts warranting collective defense under Article 5[12].  
 
 ---
 
 ## Evolution of Russian Cyber Warfare Tactics Post-2007  
 
 ### Georgia 2008: Cyber Operations as a Prelude to Invasion  
-Russia’s invasion of Georgia in August 2008 featured synchronized cyber and kinetic strikes. Prior to tank movements, DDoS attacks crippled Georgian government websites, media, and financial systems. The hacker group “StopGeorgia.ru” publicly listed targets, including the National Bank of Georgia, while pro-Russian forums distributed attack tools to volunteers[2][8]. This marked the first documented instance of cyber operations directly supporting military objectives, blurring the lines between state and non-state actors[6][8].  
+Russia's invasion of Georgia in August 2008 featured synchronized cyber and kinetic strikes. Prior to tank movements, DDoS attacks crippled Georgian government websites, media, and financial systems. The hacker group "StopGeorgia.ru" publicly listed targets, including the National Bank of Georgia, while pro-Russian forums distributed attack tools to volunteers[2][8]. This marked the first documented instance of cyber operations directly supporting military objectives, blurring the lines between state and non-state actors[6][8].  
 
 ### Ukraine 2014–2022: Escalation and Integration with Kinetic Warfare  
 The annexation of Crimea and subsequent Donbas conflict saw Russia refine its hybrid tactics:  
-- **2015 Power Grid Attacks**: The BlackEnergy malware disrupted Ukraine’s energy infrastructure, leaving 230,000 residents without electricity—a landmark in critical infrastructure targeting[8][9].  
-- **2017 NotPetya**: Masquerading as ransomware, this wiper malware caused $10 billion in global damages, though its primary target was Ukrainian businesses. NotPetya exemplified Russia’s willingness to accept collateral damage for strategic gains[8][9].  
-- **2022 Full-Scale Invasion**: Cyberattacks preceded tank columns, with wiper malware (e.g., HermeticWiper) targeting government systems. However, Ukraine’s improved defenses—bolstered by Western partnerships—limited the impact, underscoring the importance of preemptive cyber resilience[9][13].  
+- **2015 Power Grid Attacks**: The BlackEnergy malware disrupted Ukraine's energy infrastructure, leaving 230,000 residents without electricity—a landmark in critical infrastructure targeting[8][9].  
+- **2017 NotPetya**: Masquerading as ransomware, this wiper malware caused $10 billion in global damages, though its primary target was Ukrainian businesses. NotPetya exemplified Russia's willingness to accept collateral damage for strategic gains[8][9].  
+- **2022 Full-Scale Invasion**: Cyberattacks preceded tank columns, with wiper malware (e.g., HermeticWiper) targeting government systems. However, Ukraine's improved defenses—bolstered by Western partnerships—limited the impact, underscoring the importance of preemptive cyber resilience[9][13].  
 
 ### Global Implications and Proxies  
-Russia has increasingly relied on quasi-independent groups like Killnet and Sandworm to maintain plausible deniability. For example, Killnet claimed responsibility for the 2022 DDoS attacks on Estonia—the largest since 2007—which coincided with the removal of Soviet monuments[4][5]. These groups operate within a “patriotic hacker” ecosystem, receiving tacit state approval while avoiding direct command links[6][9].  
+Russia has increasingly relied on quasi-independent groups like Killnet and Sandworm to maintain plausible deniability. For example, Killnet claimed responsibility for the 2022 DDoS attacks on Estonia—the largest since 2007—which coincided with the removal of Soviet monuments[4][5]. These groups operate within a "patriotic hacker" ecosystem, receiving tacit state approval while avoiding direct command links[6][9].  
 
 ---
 
 ## Broader Strategic Objectives and Methods  
 
 ### Hybrid Warfare and Information Confrontation  
-Russian doctrine views cyber operations as part of *informatsionnoye protivoborstvo* (information confrontation), which seeks to shape perceptions and erode adversaries’ political will. This integrates:  
+Russian doctrine views cyber operations as part of *informatsionnoye protivoborstvo* (information confrontation), which seeks to shape perceptions and erode adversaries' political will. This integrates:  
 - **Cyber Effects**: Disrupting infrastructure and sowing chaos.  
 - **Disinformation**: Amplifying societal divisions through state media (RT, Sputnik) and social media bots[3][6].  
-- **Economic Pressure**: As seen in Estonia’s 1990s gas cutoff attempts and Ukraine’s pre-2014 trade wars[3][8].  
+- **Economic Pressure**: As seen in Estonia's 1990s gas cutoff attempts and Ukraine's pre-2014 trade wars[3][8].  
 
 ### Coordination with Traditional Military Tools  
-The 2008 Georgia conflict established a template: cyber operations weaken command-and-control systems before conventional forces advance. In Ukraine, this evolved into “cyber reconnaissance,” where hackers map critical infrastructure for subsequent physical strikes[8][9].  
+The 2008 Georgia conflict established a template: cyber operations weaken command-and-control systems before conventional forces advance. In Ukraine, this evolved into "cyber reconnaissance," where hackers map critical infrastructure for subsequent physical strikes[8][9].  
 
 ---
 
@@ -84,25 +84,25 @@ The 2008 Georgia conflict established a template: cyber operations weaken comman
 - **Joint Cyber Commands**: Nations like Estonia now integrate cyber units into military structures, enabling real-time coordination during attacks[12].  
 
 ### The Challenge of Attribution and Deterrence  
-Persistent attribution challenges—exemplified by Russia’s use of proxies—have hindered NATO’s ability to impose costs. However, improved forensic capabilities and frameworks like the EU’s Cyber Diplomacy Toolbox enable targeted sanctions against hacker entities[6][9].  
+Persistent attribution challenges—exemplified by Russia's use of proxies—have hindered NATO's ability to impose costs. However, improved forensic capabilities and frameworks like the EU's Cyber Diplomacy Toolbox enable targeted sanctions against hacker entities[6][9].  
 
 ---
 
 ## Analysis of Effectiveness and Consequences  
 
 ### Short-term Disruption vs. Long-term Resilience  
-While Russia’s cyber campaigns inflict immediate harm, they often fail to achieve strategic objectives. The 2007 Estonia attacks backfired by spurring NATO cyber investments, much as Ukraine’s defenses hardened post-2014[9][12]. Carnegie Endowment researchers note that “countervalue” cyber strikes frequently strengthen target resilience, creating a “digital rally-round-the-flag effect”[9].  
+While Russia's cyber campaigns inflict immediate harm, they often fail to achieve strategic objectives. The 2007 Estonia attacks backfired by spurring NATO cyber investments, much as Ukraine's defenses hardened post-2014[9][12]. Carnegie Endowment researchers note that "countervalue" cyber strikes frequently strengthen target resilience, creating a "digital rally-round-the-flag effect"[9].  
 
 ### Escalation Risks and Normative Shifts  
-Russia’s actions have prompted debates about redefining armed attacks in the cyber realm. The 2022 UN resolution condemning Russia’s aggression against Ukraine explicitly referenced cyber harm, signaling growing recognition of cyber operations as tools of warfare[9][13].  
+Russia's actions have prompted debates about redefining armed attacks in the cyber realm. The 2022 UN resolution condemning Russia's aggression against Ukraine explicitly referenced cyber harm, signaling growing recognition of cyber operations as tools of warfare[9][13].  
 
 ---
 
 ## Conclusion and Future Outlook  
 
-The 2007 Estonia cyberattacks revealed the transformative potential of digital warfare, but they also exposed its limitations. Russia’s repeated use of these tactics—from Georgia to Ukraine—demonstrates a consistent pattern of hybrid aggression, blending cyber, kinetic, and informational tools. However, the strategic outcomes have been mixed: while sowing temporary chaos, these operations often galvanize international opposition and accelerate defensive innovations.  
+The 2007 Estonia cyberattacks revealed the transformative potential of digital warfare, but they also exposed its limitations. Russia's repeated use of these tactics—from Georgia to Ukraine—demonstrates a consistent pattern of hybrid aggression, blending cyber, kinetic, and informational tools. However, the strategic outcomes have been mixed: while sowing temporary chaos, these operations often galvanize international opposition and accelerate defensive innovations.  
 
-Looking ahead, the proliferation of AI-driven cyber tools and 5G vulnerabilities will test existing frameworks. Yet, Estonia’s journey from victim to cyber defense exemplar offers a roadmap: invest in resilience, foster alliances, and recognize that in the digital age, security begins not at the border but at the server. As the *Tallinn Manual* co-author Michael Schmitt asserts, “The law of armed conflict applies to cyberspace, but only through vigilance can we ensure it is respected”[7][10].  
+Looking ahead, the proliferation of AI-driven cyber tools and 5G vulnerabilities will test existing frameworks. Yet, Estonia's journey from victim to cyber defense exemplar offers a roadmap: invest in resilience, foster alliances, and recognize that in the digital age, security begins not at the border but at the server. As the *Tallinn Manual* co-author Michael Schmitt asserts, "The law of armed conflict applies to cyberspace, but only through vigilance can we ensure it is respected"[7][10].  
 
 The lessons of 2007 remain urgent. In an era where a single line of code can paralyze a nation, the line between war and peace grows ever thinner—and the need for collective cyber defense ever clearer.
 
@@ -195,8 +195,8 @@ The lessons of 2007 remain urgent. In an era where a single line of code can par
       {
         number: 22,
         url: "https://vm.ee/en/news/estonia-names-russias-military-intelligence-first-ever-attribution-cyberattacks",
-      }
-],
+      },
+    ],
   },
   {
     id: 2,
@@ -396,10 +396,22 @@ Russia's cyber warfare trajectory—from Chechnya's ad-hoc information campaigns
   },
 ];
 
+// Generate static paths
+export async function generateStaticParams() {
+  return articles.map((article) => ({
+    id: article.id.toString(),
+  }));
+}
+
+// Component with proper typing
 export default function ArticlePage({ params }: { params: { id: string } }) {
-  const article = articles.find(
-    (article) => article.id === parseInt(params.id)
-  );
+  // Validate ID format first
+  if (!/^\d+$/.test(params.id)) {
+    notFound();
+  }
+
+  const articleId = parseInt(params.id, 10);
+  const article = articles.find((a) => a.id === articleId);
 
   if (!article) {
     notFound();
@@ -418,23 +430,23 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              h1: ({ node, ...props }) => (
+              h1: ({ ...props }) => (
                 <h1 className="text-4xl font-bold mb-4" {...props} />
               ),
-              h2: ({ node, ...props }) => (
+              h2: ({ ...props }) => (
                 <h2 className="text-3xl font-bold mt-8 mb-4" {...props} />
               ),
-              h3: ({ node, ...props }) => (
+              h3: ({ ...props }) => (
                 <h3 className="text-2xl font-bold mt-6 mb-3" {...props} />
               ),
-              p: ({ node, ...props }) => <p className="mb-4" {...props} />,
-              ul: ({ node, ...props }) => (
+              p: ({ ...props }) => <p className="mb-4" {...props} />,
+              ul: ({ ...props }) => (
                 <ul className="list-disc ml-6 mb-4" {...props} />
               ),
-              ol: ({ node, ...props }) => (
+              ol: ({ ...props }) => (
                 <ol className="list-decimal ml-6 mb-4" {...props} />
               ),
-              blockquote: ({ node, ...props }) => (
+              blockquote: ({ ...props }) => (
                 <blockquote
                   className="border-l-4 border-gray-300 pl-4 italic"
                   {...props}
