@@ -7,10 +7,13 @@ interface HomeSectionProps {
 
 const HomeSection = ({ id }: HomeSectionProps) => {
   return (
-    <section id={id} className="w-full h-screen md:h-[60vh] relative">
-      <div className="w-full h-full relative">
+    <section
+      id={id}
+      className="w-full h-[calc(100vh-64px)] md:h-[60vh] relative pt-16"
+    >
+      <div className="w-full h-full relative -mt-16">
         <Image
-          src="/fake-news.jpg"
+          src="/kevin-horvat-cyber-warfare.jpg"
           alt="Information warfare illustration"
           fill
           priority
