@@ -19,7 +19,7 @@ const AboutSection = ({ id }: AboutSectionProps) => {
             Using deep reasoning AI Models we collate and distil copious amounts of background into easily digestible articles
           </p>
           <p>
-            We hope that you find the articles informative. Weere possible we have cited our sources.
+            We hope that you find the articles informative. Where possible we have cited our sources.
           </p>
         </div>
       </div>
