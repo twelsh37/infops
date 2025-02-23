@@ -31,13 +31,13 @@ const HomeSection = ({ id }: HomeSectionProps) => {
           <hr className="w-1/4 border-t border-blue-500 mb-4 shadow-lg" />
           <blockquote className="border-l-4 border-blue-500 pl-4 mb-4 max-w-[60%]">
             <p className="text-base sm:text-lg md:text-xl text-white font-light italic drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]">
-              "If you tell a lie big enough and keep repeating it, people will
+              &quot; If you tell a lie big enough and keep repeating it, people will
               eventually come to believe it. The lie can be maintained only for
               such time as the State can shield the people from the political,
               economic and/or military consequences of the lie. It thus becomes
               vitally important for the State to use all of its powers to
               repress dissent, for the truth is the mortal enemy of the lie, and
-              thus by extension, the truth is the greatest enemy of the State."
+              thus by extension, the truth is the greatest enemy of the State. &quot;
             </p>
             <footer className="text-base sm:text-lg text-white font-light mt-2 drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]">
               — Joseph Goebbels
