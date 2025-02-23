@@ -19,45 +19,33 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-md py-4 z-50">
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link href="/" className="text-lg font-bold">
-          Influence Operations
-        </Link>
-        <ul className="flex space-x-6">
-          <li>
+    <nav className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-sm z-50">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="text-white font-bold text-xl">
+            InfoPS
+          </Link>
+          <div className="flex space-x-4">
             <button
               onClick={() => scrollToSection("home")}
-              className="hover:text-blue-500"
+              className="text-gray-300 hover:text-white px-3 py-2 rounded-md cursor-pointer"
             >
               Home
             </button>
-          </li>
-          <li>
-            <button
-              onClick={() => scrollToSection("articles")}
-              className="hover:text-blue-500"
-            >
-              Articles
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="hover:text-blue-500"
-            >
-              Contact
-            </button>
-          </li>
-          <li>
             <button
               onClick={() => scrollToSection("about")}
-              className="hover:text-blue-500"
+              className="text-gray-300 hover:text-white px-3 py-2 rounded-md cursor-pointer"
             >
               About
             </button>
-          </li>
-        </ul>
+            <Link
+              href="/articles"
+              className="text-gray-300 hover:text-white px-3 py-2 rounded-md"
+            >
+              Articles
+            </Link>
+          </div>
+        </div>
       </div>
     </nav>
   );
