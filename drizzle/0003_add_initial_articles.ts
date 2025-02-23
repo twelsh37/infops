@@ -1,8 +1,8 @@
-import { Sql } from "drizzle-orm";
+import type { VercelPgDatabase } from "drizzle-orm/vercel-postgres";
 import { articles } from "../server/db/schema";
 import { Article } from "../server/db/schema";
 
-export async function up(sql: Sql) {
+export async function up(db: VercelPgDatabase) {
   const articlesData: Article[] = [
     {
       id: 1,
@@ -385,15 +385,13 @@ export async function up(sql: Sql) {
   ];
 
   try {
-    // Insert the new articles
-    await sql.insert(articles).values(articlesData as any); // Type assertion needed here
-
+    await db.insert(articles).values(articlesData);
     console.log("Seeding complete!");
   } catch (error) {
     console.error("Error seeding:", error);
   }
 }
 
-export async function down(sql: Sql): Promise<void> {
-  await sql.delete(articles);
-} 
+export async function down(db: VercelPgDatabase): Promise<void> {
+  await db.delete(articles);
+}
