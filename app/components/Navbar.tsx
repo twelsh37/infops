@@ -6,48 +6,62 @@ import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const isArticlePage = pathname?.includes("/articles");
 
-  // Scroll function for home page sections
   const scrollToSection = (id: string) => {
     if (pathname === "/") {
       const element = document.getElementById(id);
       if (element) element.scrollIntoView({ behavior: "smooth" });
     } else {
-      // Navigate to home page first then scroll
       window.location.href = `/#${id}`;
     }
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-sm z-50">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-white font-bold text-xl">
-            InfoPS
-          </Link>
-          <div className="flex space-x-4">
-            <button
-              onClick={() => scrollToSection("home")}
-              className="text-gray-300 hover:text-white px-3 py-2 rounded-md cursor-pointer"
-            >
-              Home
-            </button>
-            <button
-              onClick={() => scrollToSection("about")}
-              className="text-gray-300 hover:text-white px-3 py-2 rounded-md cursor-pointer"
-            >
-              About
-            </button>
-            <Link
-              href="/articles"
-              className="text-gray-300 hover:text-white px-3 py-2 rounded-md"
-            >
-              Articles
-            </Link>
+    <div className="fixed top-0 left-0 w-full z-50">
+      <nav
+        className={`w-full backdrop-blur-[2px] transition-all duration-300 ${
+          isArticlePage ? "bg-white/80 text-black" : "bg-black/100 text-white"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-end h-16">
+            <div className="flex space-x-4">
+              <button
+                onClick={() => scrollToSection("home")}
+                className={`px-3 py-2 rounded-md cursor-pointer transition-colors duration-300 ${
+                  isArticlePage
+                    ? "text-black hover:text-amber-600"
+                    : "text-white hover:text-amber-400"
+                }`}
+              >
+                Home
+              </button>
+              <button
+                onClick={() => scrollToSection("about")}
+                className={`px-3 py-2 rounded-md cursor-pointer transition-colors duration-300 ${
+                  isArticlePage
+                    ? "text-black hover:text-amber-600"
+                    : "text-white hover:text-amber-400"
+                }`}
+              >
+                About
+              </button>
+              <Link
+                href="/articles"
+                className={`px-3 py-2 rounded-md transition-colors duration-300 ${
+                  isArticlePage
+                    ? "text-black hover:text-amber-600"
+                    : "text-white hover:text-amber-400"
+                }`}
+              >
+                Articles
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };
 
