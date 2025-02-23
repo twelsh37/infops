@@ -13,16 +13,13 @@ const AboutSection = ({ id }: AboutSectionProps) => {
         </h2>
         <div className="text-gray-700">
           <p className="mb-4">
-            Influence Operations is dedicated to providing insightful analysis
-            and research on cybersecurity and information warfare.
+            The aim of Influence Operations is to provide information on the use of Information Warfare in the Geo-Political arena.
           </p>
           <p className="mb-4">
-            Our team of experts works to uncover the underlying trends and
-            impacts of influence operations in the digital age.
+            Using deep reasoning AI Models we collate and distil copious amounts of background into easily digestible articles
           </p>
           <p>
-            We strive to keep you informed and prepared to navigate the
-            complexities of the cyber domain.
+            We hope that you find the articles informative. Weere possible we have cited our sources.
           </p>
         </div>
       </div>
