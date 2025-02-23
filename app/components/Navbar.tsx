@@ -26,8 +26,20 @@ const Navbar = () => {
             InfoPS
           </Link>
           <div className="flex space-x-4">
+            <button
+              onClick={() => scrollToSection("home")}
+              className="text-gray-300 hover:text-white px-3 py-2 rounded-md cursor-pointer"
+            >
+              Home
+            </button>
+            <button
+              onClick={() => scrollToSection("about")}
+              className="text-gray-300 hover:text-white px-3 py-2 rounded-md cursor-pointer"
+            >
+              About
+            </button>
             <Link
-              href="/#articles"
+              href="/articles"
               className="text-gray-300 hover:text-white px-3 py-2 rounded-md"
             >
               Articles

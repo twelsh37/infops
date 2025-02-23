@@ -1,12 +1,12 @@
 import React from "react";
 import HomeSection from "./components/HomeSection";
-import ArticlesSection from "./components/ArticlesSection";
+import AboutSection from "./components/AboutSection";
 
 export default function Home() {
   return (
     <main>
       <HomeSection id="home" />
-      <ArticlesSection />
+      <AboutSection id="about" />
     </main>
   );
 }
