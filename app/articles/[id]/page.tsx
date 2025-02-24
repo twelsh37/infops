@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { db } from "@/server/db";
 import { articles as articlesTable } from "@/server/db/schema";
 import { eq } from "drizzle-orm";
+import ArticleLayout from "@/app/components/ArticleLayout";
+import ClientReactMarkdown from "@/app/components/ClientReactMarkdown";
 
 // Define proper types for our articles
 interface Article {
@@ -58,24 +58,36 @@ export default async function ArticlePage({
   }
 
   return (
-    <article className="max-w-4xl mx-auto px-4 py-8">
-      <div className="prose prose-lg max-w-none">
-        <div>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {article.title}
-          </ReactMarkdown>
-        </div>
-        <div className="text-gray-600 mb-8">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {article.description}
-          </ReactMarkdown>
-        </div>
-        <div>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {article.content}
-          </ReactMarkdown>
-        </div>
+    <ArticleLayout>
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
+        <div className="text-gray-600 mb-8">{article.description}</div>
+        {/* <div className="prose prose-lg max-w-none"> */}
+          <ClientReactMarkdown content={article.content} />
+          {article.citations && article.citations.length > 0 && (
+            <>
+              <br />
+              <div className="mt-8">
+                <h2 className="text-2xl font-bold">Citations</h2>
+                <ul className="list-disc list-inside">
+                  {article.citations.map((citation) => (
+                    <li key={citation.number}>
+                      <a
+                        href={citation.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 hover:underline"
+                      >
+                        {citation.url}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </>
+          )}
+        {/* </div> */}
       </div>
-    </article>
+    </ArticleLayout>
   );
 }

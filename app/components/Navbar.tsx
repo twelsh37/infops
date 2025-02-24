@@ -18,10 +18,12 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50">
+    <div className="fixed top-0 left-0 right-0 z-50">
       <nav
-        className={`w-full backdrop-blur-[2px] transition-all duration-300 ${
-          isArticlePage ? "bg-white/80 text-black" : "bg-black/100 text-white"
+        className={`w-full transition-all duration-300 shadow-md ${
+          isArticlePage
+            ? "bg-white text-black"
+            : "bg-black/100 text-white backdrop-blur-[2px]"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4">
