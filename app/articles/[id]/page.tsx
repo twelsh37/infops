@@ -3,7 +3,7 @@ import { db } from "@/server/db";
 import { articles as articlesTable } from "@/server/db/schema";
 import { eq } from "drizzle-orm";
 import ArticleLayout from "@/app/components/ArticleLayout";
-import ClientReactMarkdown from "@/app/components/ClientReactMarkdown";
+import MarkdownRenderer from "@/app/components/MarkdownRenderer";
 
 // Define proper types for our articles
 interface Article {
@@ -93,34 +93,33 @@ export default async function ArticlePage({ params }: { params: PageParams }) {
   return (
     <ArticleLayout>
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
-        <div className="text-gray-600 mb-8">{article.description}</div>
-        {/* <div className="prose prose-lg max-w-none"> */}
-        <ClientReactMarkdown content={article.content} />
+        <MarkdownRenderer content={article.title} className="mb-4" />
+        <MarkdownRenderer
+          content={article.description}
+          className="text-gray-600 mb-8"
+        />
+        <MarkdownRenderer content={article.content} />
+
         {article.citations && article.citations.length > 0 && (
-          <>
-            <br />
-            <div className="mt-8">
-              <h2 className="text-2xl font-bold">Citations</h2>
-              <div className="space-y-2">
-                {article.citations.map((citation) => (
-                  <div key={citation.number} className="flex">
-                    <span className="font-bold mr-2">{citation.number}.</span>
-                    <a
-                      href={citation.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      {citation.url}
-                    </a>
-                  </div>
-                ))}
-              </div>
+          <div className="mt-8">
+            <h2 className="text-2xl font-bold">Citations</h2>
+            <div className="space-y-2">
+              {article.citations.map((citation) => (
+                <div key={citation.number} className="flex">
+                  <span className="font-bold mr-2">{citation.number}.</span>
+                  <a
+                    href={citation.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {citation.url}
+                  </a>
+                </div>
+              ))}
             </div>
-          </>
+          </div>
         )}
-        {/* </div> */}
       </div>
     </ArticleLayout>
   );
