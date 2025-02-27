@@ -17,6 +17,14 @@ interface Article {
   }>;
 }
 
+// Define a type that works with Next.js dynamic route params
+type RouteParams = {
+  id: string;
+};
+
+// Use this type to satisfy Next.js's expectations
+type PageParams = Promise<RouteParams>;
+
 // Generate static paths
 export async function generateStaticParams() {
   const articlesList = await db.select().from(articlesTable);
@@ -44,8 +52,15 @@ async function getArticle(id: number): Promise<Article | undefined> {
   return undefined;
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const articleId = parseInt(params.id);
+export async function generateMetadata({ params }: { params: PageParams }) {
+  const resolvedParams = await params;
+  const articleId = parseInt(resolvedParams.id);
+
+  // Add error handling for invalid IDs
+  if (isNaN(articleId)) {
+    notFound();
+  }
+
   const article = await getArticle(articleId);
 
   if (!article) {
@@ -60,12 +75,9 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-export default async function ArticlePage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const articleId = parseInt(params.id);
+export default async function ArticlePage({ params }: { params: PageParams }) {
+  const resolvedParams = await params;
+  const articleId = parseInt(resolvedParams.id);
 
   // Add error handling for invalid IDs
   if (isNaN(articleId)) {
