@@ -44,13 +44,34 @@ async function getArticle(id: number): Promise<Article | undefined> {
   return undefined;
 }
 
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const articleId = parseInt(params.id);
+  const article = await getArticle(articleId);
+
+  if (!article) {
+    return {
+      title: "Article Not Found",
+    };
+  }
+
+  return {
+    title: article.title,
+    description: article.description,
+  };
+}
+
 export default async function ArticlePage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }) {
-  const resolvedParams = await params;
-  const articleId = parseInt(resolvedParams.id);
+  const articleId = parseInt(params.id);
+
+  // Add error handling for invalid IDs
+  if (isNaN(articleId)) {
+    notFound();
+  }
+
   const article = await getArticle(articleId);
 
   if (!article) {
@@ -63,29 +84,30 @@ export default async function ArticlePage({
         <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
         <div className="text-gray-600 mb-8">{article.description}</div>
         {/* <div className="prose prose-lg max-w-none"> */}
-          <ClientReactMarkdown content={article.content} />
-          {article.citations && article.citations.length > 0 && (
-            <>
-              <br />
-              <div className="mt-8">
-                <h2 className="text-2xl font-bold">Citations</h2>
-                <ul className="list-disc list-inside">
-                  {article.citations.map((citation) => (
-                    <li key={citation.number}>
-                      <a
-                        href={citation.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-500 hover:underline"
-                      >
-                        {citation.url}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+        <ClientReactMarkdown content={article.content} />
+        {article.citations && article.citations.length > 0 && (
+          <>
+            <br />
+            <div className="mt-8">
+              <h2 className="text-2xl font-bold">Citations</h2>
+              <div className="space-y-2">
+                {article.citations.map((citation) => (
+                  <div key={citation.number} className="flex">
+                    <span className="font-bold mr-2">{citation.number}.</span>
+                    <a
+                      href={citation.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:underline"
+                    >
+                      {citation.url}
+                    </a>
+                  </div>
+                ))}
               </div>
-            </>
-          )}
+            </div>
+          </>
+        )}
         {/* </div> */}
       </div>
     </ArticleLayout>
