@@ -29,7 +29,7 @@ export default async function ArticlesPage() {
   const articleData = await getArticles();
 
   return (
-    <div className="min-h-screen bg-white pt-16">
+    <div className="min-h-screen bg-gray-100 pt-16">
       <div className="max-w-7xl mx-auto px-8 py-8">
         <h1 className="text-4xl font-bold mb-8">Articles</h1>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
