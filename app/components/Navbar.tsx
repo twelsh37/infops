@@ -3,6 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -59,6 +66,22 @@ const Navbar = () => {
               >
                 Articles
               </Link>
+            </div>
+
+            {/* Authentication buttons */}
+            <div className="flex items-center ml-10">
+              <SignedOut>
+                <div className="flex space-x-2">
+                  <SignInButton mode="modal">
+                    <button className="px-4 py-2 text-sm bg-white text-black rounded hover:bg-gray-200">
+                      Sign In
+                    </button>
+                  </SignInButton>
+                </div>
+              </SignedOut>
+              <SignedIn>
+                <UserButton afterSignOutUrl="/" />
+              </SignedIn>
             </div>
           </div>
         </div>

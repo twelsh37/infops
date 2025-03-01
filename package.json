@@ -13,6 +13,7 @@
     "seed": "tsx server/db/seed.ts"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.12.2",
     "@neondatabase/serverless": "^0.10.4",
     "@vercel/postgres": "^0.10.0",
     "class-variance-authority": "^0.7.1",
