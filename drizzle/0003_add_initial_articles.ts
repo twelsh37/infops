@@ -377,10 +377,240 @@ export async function up(db: VercelPgDatabase) {
     },
     {
       id: 3,
-      title: "# Article 3",
-      description: "*Brief description of article 3.*",
-      content: "# Article 3\n\nThis is article 3's content in markdown...",
-      citations: [],
+      title: "# The Realignment of US Foreign Policy",
+      description: "Trump, Putin, and the Shift in Ukraine War Dynamics",
+      content: `The United States’ recent decision to align with Russia in opposing a United Nations resolution condemning the invasion of Ukraine marks a seismic shift in global diplomacy[1][6][15]. This move, occurring under President Donald Trump’s second administration, starkly contrasts with the Biden era’s unwavering support for Kyiv and underscores a dramatic transformation in rhetoric, strategy, and geopolitical alliances. Over the past three years, the war in Ukraine has served as a litmus test for transatlantic unity, but Trump’s transactional approach—rooted in his long-standing admiration for Vladimir Putin—has upended decades of US foreign policy norms. This report examines the evolution of Trump’s relationship with Putin, the legal and diplomatic controversies that have shaped their bond, and the consequences of this realignment for Ukraine, Europe, and the international order.
+      --- 
+      
+      ## From Biden to Trump: The Rhetorical Reversal on Ukraine ### The Biden Administration’s Unwavering Support Under President Joe Biden, the United States positioned itself as Ukraine’s foremost ally, coordinating a coalition of over 50 nations to provide military, economic, and humanitarian aid[9][14]. Biden framed the conflict as a defense of democratic values against authoritarian aggression, rallying NATO allies to impose sweeping sanctions on Russia and supply advanced weaponry to Kyiv. The administration’s rhetoric emphasized accountability for Russian war crimes and a commitment to Ukraine’s territorial integrity, culminating in bipartisan congressional approval of $183 billion in aid[10][14]. 
+       
+      ### Trump’s Transactional Turn Since taking office in January 2025, Trump has dismantled this paradigm. His administration has pressured Ukraine to withdraw its UN resolution demanding Russia’s immediate withdrawal, instead proposing a neutral draft that omitted references to Moscow’s aggression[1][6]. Trump’s rhetoric has shifted blame onto Kyiv, labeling President Volodymyr Zelenskyy a “dictator” and falsely asserting that Ukraine provoked the war[9][14]. This narrative aligns with Kremlin talking points, which frame the invasion as a response to NATO expansion and Ukrainian nationalism[6][18]. Secretary of State Marco Rubio defended Trump’s stance, citing frustrations with Zelenskyy’s leadership and echoing Biden’s earlier criticisms of Ukraine’s governance[16]. 
+       
+      ### Diplomatic Divergence The Trump administration’s unilateral engagement with Russia—excluding Ukraine from peace talks in Saudi Arabia—signals a departure from multilateralism[9][14]. Whereas Biden sought to isolate Putin, Trump has pursued backchannel negotiations, leveraging his personal rapport with the Russian leader to position the US as a mediator. This approach has strained relations with European allies, who view it as capitulation to Russian demands for territorial concessions and Ukrainian neutrality[6][15]. 
+       
+      ---
+       
+      ## The Trump-Putin Relationship: From Bromance to Strategic Partnership ### Early Mutual Admiration Trump and Putin’s relationship dates to 2013, when Trump praised Putin’s leadership and speculated about a potential friendship during the Miss Universe pageant in Moscow[4][17]. Their bond deepened during the 2016 election, when Putin publicly endorsed Trump, calling him a “talented” leader, while Trump dismissed allegations of Russian interference as a “witch hunt”[4][7][17]. Despite denying direct communication, Trump repeatedly cited their shared appearance on 60 Minutes as evidence of camaraderie[4]. 
+       
+      ### The Helsinki Summit: A Turning Point The 2018 Helsinki summit epitomized Trump’s deference to Putin. In a joint press conference, Trump contradicted US intelligence agencies by accepting Putin’s denial of election meddling, stating, “I don’t see any reason why it would be”[5][17]. This moment, described by analysts as a “masterclass in diplomatic surrender,” emboldened Putin by legitimizing Russia’s narrative on the global stage[5][18]. Behind closed doors, Trump reportedly discussed conceding Crimea and lifting sanctions, though these proposals were later walked back by aides[5]. 
+      
+      ### Post-Presidency Collusion Allegations Bob Woodward’s 2024 book War revealed that Trump secretly communicated with Putin at least seven times after leaving office, including a January 2024 call arranged without advisors[7]. These discussions, coupled with Trump’s pledge to end the Ukraine war “within 24 hours,” suggest a coordinated strategy to undermine Biden’s policies[7][8]. The Trump campaign has denied collusion but acknowledged leveraging backchannels, such as envoy Steve Witkoff’s “friendship” with Putin, to negotiate prisoner swaps and peace talks[12]. 
+      
+      --- 
+      
+      ## Legal Challenges and Diplomatic Controversies 
+      
+      ### Election Interference and the Mueller Investigation The FBI’s 2016 probe into Russian election interference revealed extensive contacts between Trump’s campaign and Russian officials, including offers to broker a Trump-Putin meeting[4][11]. While Special Counsel Robert Mueller found insufficient evidence of criminal conspiracy, he documented numerous instances of obstruction of justice and willingness to accept foreign assistance[11]. Trump’s dismissal of these findings as “fake news” resonated with Putin, who labeled the investigations “politically motivated persecution”[3]. 
+      
+      ### The Shadow of Kompromat Speculation about Russian leverage over Trump intensified after his refusal to criticize Putin publicly. In Helsinki, Trump’s endorsement of Putin’s denial of election interference—despite overwhelming evidence—fueled theories of kompromat[5][17]. Woodward’s reporting added credence to these claims, detailing Trump’s 2020 decision to send Putin COVID-19 tests amid a US shortage, a gesture Putin allegedly requested remain secret[7]. ### Trump’s Legal Battles and Putin’s Endorsement Putin has consistently framed Trump’s legal troubles as evidence of US democratic decay. In 2023, he dismissed Trump’s indictments as “persecution of a political rival,” a narrative Trump echoed to rally domestic support[3][7]. This symbiotic rhetoric underscores their shared interest in destabilizing institutional trust, with Putin capitalizing on Trump’s battles to portray Western democracy as hypocritical[3][18]. 
+      
+      --- 
+      
+      ## Implications for Ukraine and Global Security 
+      
+      ### Ukraine’s Precarious Position Ukraine faces existential threats under Trump’s policy shift. The administration’s UN resolution abstention and push for territorial concessions have weakened Kyiv’s negotiating position[1][6]. Zelenskyy’s accusation that Trump inhabits a Russian “disinformation space” reflects broader anxieties about waning US support[9][14]. Military analysts warn that reduced aid could collapse Ukraine’s defenses, enabling Russian advances in Donbas and Crimea[15][18]. 
+      
+      ### Transatlantic Rifts European leaders have condemned Trump’s unilateralism, fearing a return to pre-1945 appeasement dynamics. The Munich Security Conference highlighted these tensions, with European delegates criticizing Trump’s “Yalta-style” negotiations excluding Ukraine[18]. While Hungary and Slovakia align with Trump’s realism, France and Germany advocate for continued arms shipments, signaling a fractured EU response[15][18]. 
+      
+      ### Authoritarian Consolidation Trump’s alignment with Putin has emboldened authoritarian regimes globally. China, Iran, and North Korea have praised the shift as a validation of multipolarity, while Saudi Arabia’s mediation role underscores rising non-Western influence[12][18]. Within Russia, Putin’s domestic approval has surged, with state media framing the US pivot as a vindication of his “special military operation”[15]. 
+      
+      --- 
+      
+      ## Conclusion: The Unraveling of Post-Cold War Order The Trump-Putin axis represents a deliberate dismantling of the liberal international order. By reframing Russia’s invasion as a “conflict” rather than aggression, Trump has eroded norms of territorial integrity and collective security[6][15]. This realignment risks legitimizing authoritarian expansionism, with implications for Taiwan, the South China Sea, and NATO cohesion. While Trump’s transactional approach may yield short-term deals—such as the recent prisoner exchange negotiated via Saudi intermediaries—it undermines decades of US leadership[12][18]. As historian Igor Lukes lamented, the Helsinki vote symbolizes “the funeral of something loved: the United States of America”[15]. Whether Europe can counterbalance this shift remains uncertain, but the stakes for global democracy have never been higher.`,
+      citations: [
+        {
+          "number": 1,
+          "url": "https://www.cnn.com/2025/02/24/politics/us-joins-russia-ukraine-un-vote/index.html"
+        },
+        {
+          "number": 2,
+          "url": "https://www.newyorker.com/news/the-lede/the-peril-donald-trump-poses-to-ukraine"
+        },
+        {
+          "number": 3,
+          "url": "https://www.aljazeera.com/news/2023/9/12/case-against-donald-trump-shows-rottenness-of-us-political-system-putin"
+        },
+        {
+          "number": 4,
+          "url": "https://www.nbcnews.com/politics/2016-election/donald-trump-vladimir-putin-timeline-bad-bromance-n621131"
+        },
+        {
+          "number": 5,
+          "url": "https://www.brookings.edu/articles/putin-didnt-have-to-push-the-kremlins-narrative-trump-did-it-for-him/"
+        },
+        {
+          "number": 6,
+          "url": "https://apnews.com/article/un-russia-ukraine-war-resolution-trump-zelenskyy-cde221e5850196776525403e788c272c"
+        },
+        {
+          "number": 7,
+          "url": "https://www.nytimes.com/2024/10/08/us/politics/trump-putin-woodward-book.html"
+        },
+        {
+          "number": 8,
+          "url": "https://www.itv.com/news/2025-02-21/could-a-trump-putin-meeting-reset-diplomatic-relationships"
+        },
+        {
+          "number": 9,
+          "url": "https://www.npr.org/2025/02/20/g-s1-49858/reversing-u-s-policy-trump-attacks-zelenskyy-blames-ukraine-for-war-with-russia"
+        },
+        {
+          "number": 10,
+          "url": "https://theconversation.com/trumps-move-to-closer-ties-with-russia-does-not-mean-betrayal-of-ukraine-yet-in-his-first-term-trump-was-pretty-tough-on-putin-250359"
+        },
+        {
+          "number": 11,
+          "url": "http://swalwell.house.gov/issues/russia-trump-his-administration-s-ties"
+        },
+        {
+          "number": 12,
+          "url": "https://news.sky.com/story/trump-envoy-steve-witkoff-says-he-has-developed-a-friendship-with-putin-13313676"
+        },
+        {
+          "number": 13,
+          "url": "https://www.bbc.com/news/articles/c70kd686k2do"
+        },
+        {
+          "number": 14,
+          "url": "https://www.ksby.com/world/a-closer-look-at-trump-and-bidens-differing-approaches-toward-ukraine"
+        },
+        {
+          "number": 15,
+          "url": "https://www.bu.edu/articles/2025/us-sides-with-russia-ukraine-war-resolution/"
+        },
+        {
+          "number": 16,
+          "url": "https://www.yahoo.com/news/rubio-trump-ukraine-rhetoric-joe-195849421.html"
+        },
+        {
+          "number": 17,
+          "url": "https://www.telegraph.co.uk/us/politics/2024/10/20/how-trump-putin-really-feel-each-other/"
+        },
+        {
+          "number": 18,
+          "url": "https://ecfr.eu/article/trumps-senseless-capitulation-to-putin-is-a-betrayal-of-ukraine-and-terrible-dealmaking/"
+        },
+        {
+          "number": 19,
+          "url": "https://en.wikipedia.org/wiki/Links_between_Trump_associates_and_Russian_officials"
+        },
+        {
+          "number": 20,
+          "url": "https://www.aljazeera.com/news/2025/2/25/us-rejects-un-resolution-condemning-russias-war-how-your-country-voted"
+        },
+        {
+          "number": 21,
+          "url": "https://www.cbsnews.com/news/trump-says-ukraine-started-war-despite-russia-invasion-blames-zelenskyy/"
+        },
+        {
+          "number": 22,
+          "url": "https://foreignpolicy.com/2024/10/30/enduring-mystery-trump-relationship-russia/"
+        },
+        {
+          "number": 23,
+          "url": "https://www.aljazeera.com/news/2025/2/25/us-aligns-with-russia-in-un-vote-on-ukraine"
+        },
+        {
+          "number": 24,
+          "url": "https://www.cnn.com/2025/02/20/politics/trump-zelensky-rift-ukraine-war/index.html"
+        },
+        {
+          "number": 25,
+          "url": "https://www.bbc.com/news/articles/c7435pnle0go"
+        },
+        {
+          "number": 26,
+          "url": "https://www.scrippsnews.com/world/a-closer-look-at-trump-and-bidens-differing-approaches-toward-ukraine"
+        },
+        {
+          "number": 27,
+          "url": "https://www.chathamhouse.org/2024/11/can-trump-do-deal-putin-ukraine"
+        },
+        {
+          "number": 28,
+          "url": "https://abcnews.go.com/International/radical-shift-us-policy-shut-ukraine-amid-talks/story?id=119094200"
+        },
+        {
+          "number": 29,
+          "url": "https://www.npr.org/transcripts/1232637588"
+        },
+        {
+          "number": 30,
+          "url": "https://en.wikipedia.org/wiki/Trump%E2%80%93Ukraine_scandal"
+        },
+        {
+          "number": 31,
+          "url": "https://www.bbc.co.uk/news/articles/c3w16z7dvz7o"
+        },
+        {
+          "number": 32,
+          "url": "https://www.foxnews.com/politics/deciphering-donald-trump-rhetoric-sends-different-messages"
+        },
+        {
+          "number": 33,
+          "url": "https://www.washingtonpost.com/world/2025/02/12/rump-putin-relationship-diplomacy-history/"
+        },
+        {
+          "number": 34,
+          "url": "https://abc7news.com/post/ukraine-economic-deal-president-donald-trump-will-face-lot-challenges-dealing-putin-zelenskyy-says/15956615/"
+        },
+        {
+          "number": 35,
+          "url": "https://www.voanews.com/a/how-biden-trump-differ-over-ukraine-policy/7667995.html"
+        },
+        {
+          "number": 36,
+          "url": "https://www.politico.com/magazine/story/2017/03/connections-trump-putin-russia-ties-chart-flynn-page-manafort-sessions-214868"
+        },
+        {
+          "number": 37,
+          "url": "https://abcnews.go.com/International/ukrainian-official-suggests-us-mineral-deal-terms-improved/story?id=119199649"
+        },
+        {
+          "number": 38,
+          "url": "https://www.irishtimes.com/video/video/2025/02/23/ukraine-war-anniversary-how-us-rhetoric-has-changed-over-three-years/"
+        },
+        {
+          "number": 39,
+          "url": "https://www.justsecurity.org/108205/russia-ukraine-third-anniversary/"
+        },
+        {
+          "number": 40,
+          "url": "https://www.bbc.co.uk/news/live/cvg1402yyvet"
+        },
+        {
+          "number": 41,
+          "url": "https://www.reuters.com/world/what-do-we-know-about-putin-trump-relationship-2025-02-13/"
+        },
+        {
+          "number": 42,
+          "url": "https://usun.usmission.gov/remarks-at-a-un-general-assembly-emergency-special-session-on-ukraine/"
+        },
+        {
+          "number": 43,
+          "url": "https://www.youtube.com/watch?v=dxUyfcFjAo0"
+        },
+        {
+          "number": 44,
+          "url": "https://bfpg.co.uk/2025/01/the-trump-putin-deal-the-worst-of-a-bad-deal/"
+        },
+        {
+          "number": 45,
+          "url": "https://www.bbc.co.uk/news/articles/c9814k2jlxko"
+        },
+        {
+          "number": 46,
+          "url": "https://www.bbc.co.uk/news/world-europe-44852812"
+        },
+        {
+          "number": 47,
+          "url": "https://www.news5cleveland.com/world/a-closer-look-at-trump-and-bidens-differing-approaches-toward-ukraine"
+        },
+        {
+          "number": 48,
+          "url": "https://www.bbc.co.uk/news/articles/ckgnrg77ydjo"
+        }
+      ],
     },
   ];
 
