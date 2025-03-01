@@ -3,7 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -86,6 +92,12 @@ const Navbar = () => {
                       Sign In
                     </button>
                   </SignInButton>
+
+                  <SignUpButton mode="modal">
+                    <button className="px-4 py-2 text-sm bg-amber-500 text-white rounded hover:bg-amber-600">
+                      Sign Up
+                    </button>
+                  </SignUpButton>
                 </div>
               </SignedOut>
               <SignedIn>
