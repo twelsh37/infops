@@ -3,17 +3,12 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const Navbar = () => {
   const pathname = usePathname();
   const isArticlePage = pathname?.includes("/articles");
+  const isStoryPage = pathname?.includes("/story");
 
   const scrollToSection = (id: string) => {
     if (pathname === "/") {
@@ -28,7 +23,7 @@ const Navbar = () => {
     <div className="fixed top-0 left-0 right-0 z-50">
       <nav
         className={`w-full transition-all duration-300 shadow-md ${
-          isArticlePage
+          isArticlePage || isStoryPage
             ? "bg-white text-black"
             : "bg-black/100 text-white backdrop-blur-[2px]"
         }`}
@@ -39,7 +34,7 @@ const Navbar = () => {
               <button
                 onClick={() => scrollToSection("home")}
                 className={`px-3 py-2 rounded-md cursor-pointer transition-colors duration-300 ${
-                  isArticlePage
+                  isArticlePage || isStoryPage
                     ? "text-black hover:text-amber-600"
                     : "text-white hover:text-amber-400"
                 }`}
@@ -49,7 +44,7 @@ const Navbar = () => {
               <button
                 onClick={() => scrollToSection("about")}
                 className={`px-3 py-2 rounded-md cursor-pointer transition-colors duration-300 ${
-                  isArticlePage
+                  isArticlePage || isStoryPage
                     ? "text-black hover:text-amber-600"
                     : "text-white hover:text-amber-400"
                 }`}
@@ -59,13 +54,27 @@ const Navbar = () => {
               <Link
                 href="/articles"
                 className={`px-3 py-2 rounded-md transition-colors duration-300 ${
-                  isArticlePage
+                  isArticlePage || isStoryPage
                     ? "text-black hover:text-amber-600"
                     : "text-white hover:text-amber-400"
                 }`}
               >
                 Articles
               </Link>
+
+              {/* Story link - only visible to authenticated users */}
+              <SignedIn>
+                <Link
+                  href="/story"
+                  className={`px-3 py-2 rounded-md transition-colors duration-300 ${
+                    isArticlePage || isStoryPage
+                      ? "text-black hover:text-amber-600"
+                      : "text-white hover:text-amber-400"
+                  }`}
+                >
+                  Story
+                </Link>
+              </SignedIn>
             </div>
 
             {/* Authentication buttons */}
