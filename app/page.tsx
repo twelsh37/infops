@@ -5,7 +5,7 @@ import AboutSection from "./components/AboutSection";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen flex flex-col">
+    <main className="relative min-h-screen flex flex-col -mt-16">
       <div className="flex-1">
         <HomeSection id="home" />
         <AboutSection id="about" />
