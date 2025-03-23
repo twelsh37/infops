@@ -9,6 +9,9 @@ import {
   DialogFooter,
   DialogTitle,
   DialogDescription,
+  DialogPortal,
+  DialogOverlay,
+  DialogClose,
 } from "@/components/ui/dialog";
 
 describe("Dialog Component", () => {
@@ -141,5 +144,51 @@ describe("Dialog Component", () => {
     const srOnlyText = closeButton.querySelector(".sr-only");
     expect(srOnlyText).toBeInTheDocument();
     expect(srOnlyText).toHaveTextContent(/close/i);
+  });
+
+  it("renders with custom portal and overlay", async () => {
+    const user = userEvent.setup();
+    render(
+      <Dialog>
+        <DialogTrigger>Open</DialogTrigger>
+        <DialogPortal>
+          <DialogOverlay className="custom-overlay" />
+          <DialogContent>
+            <DialogTitle>Title</DialogTitle>
+          </DialogContent>
+        </DialogPortal>
+      </Dialog>
+    );
+
+    // Open dialog
+    await user.click(screen.getByRole("button", { name: /open/i }));
+
+    // Check overlay is rendered with custom class
+    const overlay = document.querySelector(".custom-overlay");
+    expect(overlay).toBeInTheDocument();
+  });
+
+  it("handles custom close button", async () => {
+    const user = userEvent.setup();
+    render(
+      <Dialog>
+        <DialogTrigger>Open</DialogTrigger>
+        <DialogContent>
+          <DialogTitle>Title</DialogTitle>
+          <DialogClose className="custom-close">Custom Close</DialogClose>
+        </DialogContent>
+      </Dialog>
+    );
+
+    // Open dialog
+    await user.click(screen.getByRole("button", { name: /open/i }));
+
+    // Find and click custom close button
+    const closeButton = screen.getByRole("button", { name: /custom close/i });
+    expect(closeButton).toHaveClass("custom-close");
+    await user.click(closeButton);
+
+    // Dialog should be closed
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 });
