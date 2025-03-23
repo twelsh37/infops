@@ -1,19 +1,24 @@
 "use client";
 
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import { serialize } from 'next-mdx-remote/serialize';
-import remarkGfm from 'remark-gfm';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import { useEffect, useState } from 'react';
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
+import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { useEffect, useState } from "react";
 
 interface MarkdownRendererProps {
   content: string;
   className?: string;
 }
 
-export default function MarkdownRenderer({ content, className = "" }: MarkdownRendererProps) {
-  const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult | null>(null);
+export default function MarkdownRenderer({
+  content,
+  className = "",
+}: MarkdownRendererProps) {
+  const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult | null>(
+    null
+  );
 
   useEffect(() => {
     const processMdx = async () => {
@@ -30,7 +35,12 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
   }, [content]);
 
   if (!mdxSource) {
-    return <div className="animate-pulse bg-gray-200 h-10 w-full rounded"></div>;
+    return (
+      <div
+        data-testid="loading-placeholder"
+        className="animate-pulse bg-gray-200 h-10 w-full rounded"
+      ></div>
+    );
   }
 
   return (
@@ -38,4 +48,4 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
       <MDXRemote {...mdxSource} />
     </div>
   );
-} 
+}
