@@ -15,13 +15,13 @@ configure({
 });
 
 // Silence React 18 Testing Library warnings about act()
+const originalError = console.error;
 jest.spyOn(console, "error").mockImplementation((...args) => {
   const message = typeof args[0] === "string" ? args[0] : "";
   if (message.includes("ReactDOMTestUtils.act")) {
     return;
   }
-  // @ts-expect-error console.error.orig is added by jest.spyOn
-  console.error.orig(...args);
+  originalError.apply(console, args);
 });
 
 // Mock Next.js router
@@ -66,3 +66,11 @@ jest.mock("next/navigation", () => ({
     return new URLSearchParams();
   },
 }));
+
+// Add TextEncoder and TextDecoder for pg module
+if (typeof global.TextEncoder === "undefined") {
+  import("util").then(({ TextEncoder, TextDecoder }) => {
+    global.TextEncoder = TextEncoder;
+    global.TextDecoder = TextDecoder;
+  });
+}

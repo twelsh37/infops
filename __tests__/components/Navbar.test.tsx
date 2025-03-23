@@ -7,7 +7,7 @@ import Navbar from "@/app/components/Navbar";
 
 // Mock next/navigation
 jest.mock("next/navigation", () => ({
-  usePathname: () => "/",
+  usePathname: jest.fn(() => "/"),
 }));
 
 // Mock next/link
@@ -113,5 +113,38 @@ describe("Navbar Component", () => {
     );
     expect(storySection).toBeTruthy();
     expect(storySection).toContainHTML("Story");
+  });
+
+  it("redirects to home page section when not on home page", () => {
+    // Mock usePathname to return a different path
+    const usePathname = jest.requireMock("next/navigation").usePathname;
+    (usePathname as jest.Mock).mockReturnValue("/articles");
+
+    render(<Navbar />);
+
+    // Save original window.location
+    const originalLocation = window.location;
+
+    // Mock window.location
+    const mockLocation = { href: "" };
+    Object.defineProperty(window, "location", {
+      writable: true,
+      value: mockLocation,
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: /home/i }));
+    expect(window.location.href).toBe("/#home");
+
+    fireEvent.click(screen.getByRole("button", { name: /about/i }));
+    expect(window.location.href).toBe("/#about");
+
+    // Restore window.location
+    Object.defineProperty(window, "location", {
+      writable: true,
+      value: originalLocation,
+    });
+
+    // Reset the mock
+    (usePathname as jest.Mock).mockReturnValue("/");
   });
 });
