@@ -78,10 +78,14 @@ describe("Form Components", () => {
   it("applies correct styling to form components", () => {
     render(<TestForm />);
 
-    const label = screen.getByText(/username/i);
-    const description = screen.getByText(/enter your username/i);
+    const label = screen.getByText("Username");
+    const description = screen.getByText(/^enter your username$/i);
 
-    expect(label).toHaveClass("text-sm", "font-medium");
+    // Verify input is properly labeled
+    const input = screen.getByRole("textbox", { name: /username/i });
+    expect(input).toBeInTheDocument();
+
+    expect(label).toHaveClass("text-sm", "font-medium", "leading-none");
     expect(description).toHaveClass("text-[0.8rem]", "text-muted-foreground");
   });
 
