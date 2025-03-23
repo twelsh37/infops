@@ -18,10 +18,16 @@ const HomeSection = ({ id }: HomeSectionProps) => {
           sizes="100vw"
         />
         {/* Black overlay */}
-        <div className="absolute inset-0 bg-black/60" />
+        <div
+          data-testid="black-overlay"
+          className="absolute inset-0 bg-black/60"
+        />
 
         {/* Text overlay */}
-        <div className="absolute inset-0 flex flex-col justify-center pl-[5%] pr-4 sm:pr-6 lg:pr-8 translate-y-[15%]">
+        <div
+          data-testid="text-overlay"
+          className="absolute inset-0 flex flex-col justify-center pl-[5%] pr-4 sm:pr-6 lg:pr-8 translate-y-[15%]"
+        >
           <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold text-white mb-4 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] text-shadow-lg">
             Influence Operations
           </h1>
@@ -40,7 +46,10 @@ const HomeSection = ({ id }: HomeSectionProps) => {
               the lie, and thus by extension, the truth is the greatest enemy of
               the State. &quot;
             </p>
-            <footer className="text-base sm:text-lg text-white font-light mt-2 drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]">
+            <footer
+              role="contentinfo"
+              className="text-base sm:text-lg text-white font-light mt-2 drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+            >
               — Joseph Goebbels
             </footer>
           </blockquote>
