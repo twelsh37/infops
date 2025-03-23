@@ -68,9 +68,15 @@ jest.mock("next/navigation", () => ({
 }));
 
 // Add TextEncoder and TextDecoder for pg module
-if (typeof global.TextEncoder === "undefined") {
-  import("util").then(({ TextEncoder, TextDecoder }) => {
-    global.TextEncoder = TextEncoder;
-    global.TextDecoder = TextDecoder;
-  });
+if (
+  typeof global.TextEncoder === "undefined" ||
+  typeof global.TextDecoder === "undefined"
+) {
+  (async () => {
+    const util = await import("util");
+    Object.assign(global, {
+      TextEncoder: util.TextEncoder,
+      TextDecoder: util.TextDecoder,
+    });
+  })();
 }
