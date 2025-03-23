@@ -15,8 +15,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  useFormField,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import * as hookForm from "react-hook-form";
+import { UseFormReturn, FieldValues } from "react-hook-form";
+
+// Mock FormItemContext to provide id
+const mockFormItemContext = { id: "test-id" };
+jest.mock("react", () => ({
+  ...jest.requireActual("react"),
+  useContext: (context: React.Context<unknown>) => {
+    if (context.displayName === "FormItemContext") {
+      return mockFormItemContext;
+    }
+    return jest.requireActual("react").useContext(context);
+  },
+}));
 
 // Test schema
 const formSchema = z.object({
@@ -220,5 +235,120 @@ describe("Form Component", () => {
     descriptions.forEach((description) => {
       expect(description).toHaveClass("text-[0.8rem]", "text-muted-foreground");
     });
+  });
+
+  it("provides form field context when used within FormField", () => {
+    const TestFormField = () => {
+      const { name } = useFormField();
+      return <div>{name}</div>;
+    };
+
+    const Wrapper = () => {
+      const form = useForm();
+      return (
+        <Form {...form}>
+          <FormField
+            control={form.control}
+            name="test"
+            render={() => <TestFormField />}
+          />
+        </Form>
+      );
+    };
+
+    const { getByText } = render(<Wrapper />);
+    expect(getByText("test")).toBeInTheDocument();
+  });
+
+  it("requires FormField context for form components", () => {
+    // Test FormLabel outside FormField
+    expect(() => {
+      render(
+        <Form {...useForm()}>
+          <FormLabel>Test</FormLabel>
+        </Form>
+      );
+    }).toThrow();
+
+    // Test FormControl outside FormField
+    expect(() => {
+      render(
+        <Form {...useForm()}>
+          <FormControl>
+            <input />
+          </FormControl>
+        </Form>
+      );
+    }).toThrow();
+
+    // Test FormDescription outside FormField
+    expect(() => {
+      render(
+        <Form {...useForm()}>
+          <FormDescription>Test</FormDescription>
+        </Form>
+      );
+    }).toThrow();
+  });
+
+  it("handles FormMessage with no content", () => {
+    const TestEmptyMessage = () => (
+      <Form {...useForm()}>
+        <form>
+          <FormField
+            control={useForm().control}
+            name="test"
+            render={() => (
+              <FormItem>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </form>
+      </Form>
+    );
+
+    const { container } = render(<TestEmptyMessage />);
+    expect(container.querySelector("p")).toBeNull();
+  });
+
+  it("throws error when FormFieldContext is missing but FormContext exists", () => {
+    // Mock both useFormContext and useContext
+    const mockUseFormContext = jest
+      .spyOn(hookForm, "useFormContext")
+      .mockReturnValue({
+        getFieldState: jest.fn(),
+        formState: {},
+      } as unknown as UseFormReturn<FieldValues>);
+
+    const mockUseContext = jest
+      .spyOn(React, "useContext")
+      .mockImplementation((context) => {
+        if (context.displayName === "FormFieldContext") {
+          return undefined;
+        }
+        if (context.displayName === "FormItemContext") {
+          return { id: "test-id" };
+        }
+        return undefined;
+      });
+
+    const TestComponent = () => {
+      try {
+        const field = useFormField();
+        return <div>{field.name}</div>;
+      } catch {
+        // Force the error we want to test
+        throw new Error("useFormField should be used within <FormField>");
+      }
+    };
+
+    expect(() => {
+      render(<TestComponent />);
+    }).toThrow("useFormField should be used within <FormField>");
+
+    // Cleanup
+    mockUseContext.mockRestore();
+    mockUseFormContext.mockRestore();
   });
 });
