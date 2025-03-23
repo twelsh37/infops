@@ -135,30 +135,28 @@ describe("ArticlePage", () => {
       // Mock db to return empty array for invalid ID
       (db as unknown as MockSelectBuilder).limit.mockResolvedValueOnce([]);
 
-      await expect(
-        generateMetadata({
-          params: Promise.resolve({ id: "invalid" }),
-        })
-      ).rejects.toThrow("NEXT_NOT_FOUND");
+      // Mock notFound to just return undefined instead of throwing
+      mockNotFound.mockImplementationOnce(() => undefined);
 
+      // Call the component and expect notFound to be called
+      await generateMetadata({
+        params: Promise.resolve({ id: "invalid" }),
+      });
+
+      // Verify notFound was called
       expect(mockNotFound).toHaveBeenCalled();
     });
   });
 
   describe("ArticlePage", () => {
     beforeEach(() => {
-      // Setup notFound to throw error for invalid article tests only
-      mockNotFound.mockImplementation(() => {
-        throw new Error("NEXT_NOT_FOUND");
-      });
       // Reset the mock chain for each test
       (db as unknown as MockSelectBuilder).limit.mockReset();
+      // Reset notFound mock
+      mockNotFound.mockReset();
     });
 
     it("should render article with citations", async () => {
-      // Reset notFound mock for this test
-      mockNotFound.mockReset();
-
       // Mock db to return our article
       (db as unknown as MockSelectBuilder).limit.mockResolvedValueOnce([
         mockArticle,
@@ -193,9 +191,6 @@ describe("ArticlePage", () => {
     });
 
     it("should handle article without citations", async () => {
-      // Reset notFound mock for this test
-      mockNotFound.mockReset();
-
       const articleWithoutCitations = { ...mockArticle, citations: [] };
       (db as unknown as MockSelectBuilder).limit.mockResolvedValueOnce([
         articleWithoutCitations,
@@ -224,20 +219,43 @@ describe("ArticlePage", () => {
       ).not.toBeInTheDocument();
     });
 
+    it("should handle article not found", async () => {
+      // Mock db to return empty array
+      (db as unknown as MockSelectBuilder).limit.mockResolvedValueOnce([]);
+
+      // Setup notFound to throw error for this test
+      mockNotFound.mockImplementation(() => {
+        throw new Error("NEXT_NOT_FOUND");
+      });
+
+      // Call the component and expect it to throw
+      await expect(
+        ArticlePage({
+          params: Promise.resolve({ id: "1" }),
+        })
+      ).rejects.toThrow("NEXT_NOT_FOUND");
+
+      // Verify notFound was called
+      expect(mockNotFound).toHaveBeenCalled();
+    });
+
     it("should handle invalid article ID", async () => {
       // Mock db to return empty array for invalid ID
       (db as unknown as MockSelectBuilder).limit.mockResolvedValueOnce([]);
 
-      let error;
-      try {
-        await ArticlePage({
-          params: Promise.resolve({ id: "invalid" }),
-        });
-      } catch (e) {
-        error = e;
-      }
+      // Setup notFound to throw error for this test
+      mockNotFound.mockImplementation(() => {
+        throw new Error("NEXT_NOT_FOUND");
+      });
 
-      expect(error).toEqual(new Error("NEXT_NOT_FOUND"));
+      // Call the component and expect it to throw
+      await expect(
+        ArticlePage({
+          params: Promise.resolve({ id: "invalid" }),
+        })
+      ).rejects.toThrow("NEXT_NOT_FOUND");
+
+      // Verify notFound was called
       expect(mockNotFound).toHaveBeenCalled();
     });
   });
