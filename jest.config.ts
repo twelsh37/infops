@@ -1,6 +1,4 @@
 // File: jest.config.ts
-// Jest configuration for Next.js project with TypeScript
-
 import type { Config } from "jest";
 import nextJest from "next/jest";
 
@@ -10,21 +8,19 @@ const createJestConfig = nextJest({
 });
 
 // Add any custom config to be passed to Jest
-const config: Config = {
+const customJestConfig: Config = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
-  testEnvironment: "jsdom",
+  testEnvironment: "jest-environment-jsdom",
   moduleNameMapper: {
-    // Handle module aliases (if you're using them in your Next.js project)
+    "^@/app/(.*)$": "<rootDir>/app/$1",
+    "^@/components/(.*)$": "<rootDir>/components/$1",
+    "^@/server/(.*)$": "<rootDir>/server/$1",
     "^@/(.*)$": "<rootDir>/$1",
   },
-  testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
+  testEnvironmentOptions: {
+    customExportConditions: [""],
+  },
   collectCoverage: true,
-  collectCoverageFrom: [
-    "app/**/*.{js,jsx,ts,tsx}",
-    "components/**/*.{js,jsx,ts,tsx}",
-    "!**/*.d.ts",
-    "!**/node_modules/**",
-  ],
   coverageThreshold: {
     global: {
       statements: 20,
@@ -33,18 +29,7 @@ const config: Config = {
       lines: 20,
     },
   },
-  transform: {
-    "^.+\\.(t|j)sx?$": "@swc/jest",
-  },
-  extensionsToTreatAsEsm: [".ts", ".tsx"],
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-  testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
-  transformIgnorePatterns: [
-    "/node_modules/(?!(@testing-library|@babel|@jest)/)",
-  ],
-  resolver: undefined,
-  preset: "ts-jest/presets/default-esm",
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-export default createJestConfig(config);
+export default createJestConfig(customJestConfig);

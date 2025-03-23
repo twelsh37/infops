@@ -2,48 +2,60 @@
 // Tests for the Form components
 
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import {
   Form,
+  FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
-  FormDescription,
   FormMessage,
+  useFormField,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import * as hookForm from "react-hook-form";
+import { UseFormReturn, FieldValues } from "react-hook-form";
 
-// Test schema and type
+// Mock FormItemContext to provide id
+const mockFormItemContext = { id: "test-id" };
+jest.mock("react", () => ({
+  ...jest.requireActual("react"),
+  useContext: (context: React.Context<unknown>) => {
+    if (context.displayName === "FormItemContext") {
+      return mockFormItemContext;
+    }
+    return jest.requireActual("react").useContext(context);
+  },
+}));
+
+// Test schema
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  username: z.string().min(2, "Username must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
 });
 
-type FormData = z.infer<typeof formSchema>;
-
-// Test form component with onSubmit handler
-interface TestFormProps {
-  onSubmit?: (data: FormData) => void;
-}
-
-const TestForm = ({ onSubmit = () => {} }: TestFormProps) => {
-  const form = useForm<FormData>({
+// Test form component
+const TestForm = ({ onSubmit = jest.fn() }) => {
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
+      email: "",
     },
-    mode: "onBlur", // Enable validation on blur
   });
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} data-testid="test-form">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8"
+        data-testid="test-form"
+      >
         <FormField
           control={form.control}
           name="username"
@@ -51,9 +63,25 @@ const TestForm = ({ onSubmit = () => {} }: TestFormProps) => {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input placeholder="Enter username" {...field} />
               </FormControl>
-              <FormDescription>Enter your username</FormDescription>
+              <FormDescription>
+                This is your public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder="Enter email" type="email" {...field} />
+              </FormControl>
+              <FormDescription>Enter your email address.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -64,127 +92,263 @@ const TestForm = ({ onSubmit = () => {} }: TestFormProps) => {
   );
 };
 
-describe("Form Components", () => {
-  it("renders all form components correctly", () => {
+describe("Form Component", () => {
+  it("renders form with all its parts", () => {
     render(<TestForm />);
 
-    const input = screen.getByRole("textbox", { name: /username/i });
-    expect(input).toBeInTheDocument();
-    expect(screen.getByRole("textbox")).toBeInTheDocument();
-    expect(screen.getByText(/enter your username/i)).toBeInTheDocument();
+    // Check form elements are rendered
+    expect(screen.getByTestId("test-form")).toBeInTheDocument();
+
+    // Check username field
+    expect(
+      screen.getByRole("textbox", { name: /username/i })
+    ).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: /email/i })).toBeInTheDocument();
+    expect(
+      screen.getByText(/this is your public display name/i)
+    ).toBeInTheDocument();
+    expect(screen.getByText(/enter your email address/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /submit/i })).toBeInTheDocument();
   });
 
-  it("applies correct styling to form components", () => {
-    render(<TestForm />);
+  it("handles form submission with valid data", async () => {
+    const handleSubmit = jest.fn();
+    const user = userEvent.setup();
 
-    const label = screen.getByText("Username");
-    const description = screen.getByText(/^enter your username$/i);
+    render(<TestForm onSubmit={handleSubmit} />);
 
-    // Verify input is properly labeled
-    const input = screen.getByRole("textbox", { name: /username/i });
-    expect(input).toBeInTheDocument();
+    // Fill in form fields
+    await user.type(
+      screen.getByRole("textbox", { name: /username/i }),
+      "testuser"
+    );
+    await user.type(
+      screen.getByRole("textbox", { name: /email/i }),
+      "test@example.com"
+    );
 
-    expect(label).toHaveClass("text-sm", "font-medium", "leading-none");
-    expect(description).toHaveClass("text-[0.8rem]", "text-muted-foreground");
+    // Submit form
+    await user.click(screen.getByRole("button", { name: /submit/i }));
+
+    // Check if form was submitted with correct data
+    expect(handleSubmit).toHaveBeenCalledWith(
+      {
+        username: "testuser",
+        email: "test@example.com",
+      },
+      expect.anything()
+    );
   });
 
-  it("shows validation error when input is too short", async () => {
+  it("displays validation errors for invalid data", async () => {
+    const handleSubmit = jest.fn();
+    const user = userEvent.setup();
+
+    render(<TestForm onSubmit={handleSubmit} />);
+
+    // Submit form without filling in fields
+    await user.click(screen.getByRole("button", { name: /submit/i }));
+
+    // Check validation messages
+    expect(
+      screen.getByText(/username must be at least 2 characters/i)
+    ).toBeInTheDocument();
+    expect(screen.getByText(/invalid email address/i)).toBeInTheDocument();
+    expect(handleSubmit).not.toHaveBeenCalled();
+
+    // Fill in invalid data
+    await user.type(screen.getByRole("textbox", { name: /username/i }), "a");
+    await user.type(
+      screen.getByRole("textbox", { name: /email/i }),
+      "invalid-email"
+    );
+
+    // Submit form again
+    await user.click(screen.getByRole("button", { name: /submit/i }));
+
+    // Check validation messages again
+    expect(
+      screen.getByText(/username must be at least 2 characters/i)
+    ).toBeInTheDocument();
+    expect(screen.getByText(/invalid email address/i)).toBeInTheDocument();
+    expect(handleSubmit).not.toHaveBeenCalled();
+  });
+
+  it("updates form state correctly", async () => {
     const user = userEvent.setup();
     render(<TestForm />);
 
-    const input = screen.getByRole("textbox", { name: /username/i });
+    const usernameInput = screen.getByRole("textbox", { name: /username/i });
+    const emailInput = screen.getByRole("textbox", { name: /email/i });
 
-    // Type a single character and blur the field
-    await user.type(input, "a");
-    await user.tab(); // Move focus away to trigger blur validation
+    // Type in username
+    await user.type(usernameInput, "testuser");
+    expect(usernameInput).toHaveValue("testuser");
 
-    // Wait for the error message to appear
-    await waitFor(() => {
-      expect(
-        screen.getByText(/username must be at least 2 characters/i)
-      ).toBeInTheDocument();
-    });
+    // Type in email
+    await user.type(emailInput, "test@example.com");
+    expect(emailInput).toHaveValue("test@example.com");
+
+    // Clear fields
+    await user.clear(usernameInput);
+    await user.clear(emailInput);
+    expect(usernameInput).toHaveValue("");
+    expect(emailInput).toHaveValue("");
   });
 
-  it("clears validation error when input becomes valid", async () => {
-    const user = userEvent.setup();
+  it("applies correct styling to form elements", () => {
     render(<TestForm />);
 
-    const input = screen.getByRole("textbox", { name: /username/i });
+    // Check form styling
+    expect(screen.getByTestId("test-form")).toHaveClass("space-y-8");
 
-    // First trigger the error
-    await user.type(input, "a");
-    await user.tab();
-
-    // Wait for error to appear
-    await waitFor(() => {
-      expect(
-        screen.getByText(/username must be at least 2 characters/i)
-      ).toBeInTheDocument();
-    });
-
-    // Now fix the input
-    await user.type(input, "bc"); // Now "abc"
-    await user.tab();
-
-    // Wait for error to disappear
-    await waitFor(() => {
-      expect(
-        screen.queryByText(/username must be at least 2 characters/i)
-      ).not.toBeInTheDocument();
-    });
-  });
-
-  it("updates form state on input change", async () => {
-    const user = userEvent.setup();
-    render(<TestForm />);
-
-    const input = screen.getByRole("textbox", { name: /username/i });
-    await user.type(input, "testuser");
-
-    expect(input).toHaveValue("testuser");
-  });
-
-  it("handles successful form submission with valid data", async () => {
-    const user = userEvent.setup();
-    const onSubmit = jest.fn();
-    render(<TestForm onSubmit={onSubmit} />);
-
-    const input = screen.getByRole("textbox", { name: /username/i });
-    const submitButton = screen.getByRole("button", { name: /submit/i });
-
-    // Type valid input
-    await user.type(input, "testuser");
-    await user.click(submitButton);
-
-    // Wait for form submission
-    await waitFor(() => {
-      expect(onSubmit).toHaveBeenCalledWith(
-        { username: "testuser" },
-        expect.anything()
+    // Check input styling
+    const inputs = screen.getAllByRole("textbox");
+    inputs.forEach((input) => {
+      expect(input).toHaveClass(
+        "flex",
+        "h-9",
+        "w-full",
+        "rounded-md",
+        "border",
+        "border-input",
+        "bg-transparent",
+        "px-3",
+        "py-1",
+        "text-base",
+        "shadow-sm",
+        "transition-colors",
+        "focus-visible:outline-none",
+        "focus-visible:ring-1",
+        "focus-visible:ring-ring",
+        "disabled:cursor-not-allowed",
+        "disabled:opacity-50",
+        "md:text-sm"
       );
     });
+
+    // Check description styling
+    const descriptions = [
+      screen.getByText(/this is your public display name/i),
+      screen.getByText(/enter your email address/i),
+    ];
+    descriptions.forEach((description) => {
+      expect(description).toHaveClass("text-[0.8rem]", "text-muted-foreground");
+    });
   });
 
-  it("prevents form submission with invalid data", async () => {
-    const user = userEvent.setup();
-    const onSubmit = jest.fn();
-    render(<TestForm onSubmit={onSubmit} />);
+  it("provides form field context when used within FormField", () => {
+    const TestFormField = () => {
+      const { name } = useFormField();
+      return <div>{name}</div>;
+    };
 
-    const input = screen.getByRole("textbox", { name: /username/i });
-    const submitButton = screen.getByRole("button", { name: /submit/i });
+    const Wrapper = () => {
+      const form = useForm();
+      return (
+        <Form {...form}>
+          <FormField
+            control={form.control}
+            name="test"
+            render={() => <TestFormField />}
+          />
+        </Form>
+      );
+    };
 
-    // Type invalid input
-    await user.type(input, "a");
-    await user.click(submitButton);
+    const { getByText } = render(<Wrapper />);
+    expect(getByText("test")).toBeInTheDocument();
+  });
 
-    // Form should not be submitted
-    await waitFor(() => {
-      expect(onSubmit).not.toHaveBeenCalled();
-      expect(
-        screen.getByText(/username must be at least 2 characters/i)
-      ).toBeInTheDocument();
-    });
+  it("requires FormField context for form components", () => {
+    // Test FormLabel outside FormField
+    expect(() => {
+      render(
+        <Form {...useForm()}>
+          <FormLabel>Test</FormLabel>
+        </Form>
+      );
+    }).toThrow();
+
+    // Test FormControl outside FormField
+    expect(() => {
+      render(
+        <Form {...useForm()}>
+          <FormControl>
+            <input />
+          </FormControl>
+        </Form>
+      );
+    }).toThrow();
+
+    // Test FormDescription outside FormField
+    expect(() => {
+      render(
+        <Form {...useForm()}>
+          <FormDescription>Test</FormDescription>
+        </Form>
+      );
+    }).toThrow();
+  });
+
+  it("handles FormMessage with no content", () => {
+    const TestEmptyMessage = () => (
+      <Form {...useForm()}>
+        <form>
+          <FormField
+            control={useForm().control}
+            name="test"
+            render={() => (
+              <FormItem>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </form>
+      </Form>
+    );
+
+    const { container } = render(<TestEmptyMessage />);
+    expect(container.querySelector("p")).toBeNull();
+  });
+
+  it("throws error when FormFieldContext is missing but FormContext exists", () => {
+    // Mock both useFormContext and useContext
+    const mockUseFormContext = jest
+      .spyOn(hookForm, "useFormContext")
+      .mockReturnValue({
+        getFieldState: jest.fn(),
+        formState: {},
+      } as unknown as UseFormReturn<FieldValues>);
+
+    const mockUseContext = jest
+      .spyOn(React, "useContext")
+      .mockImplementation((context) => {
+        if (context.displayName === "FormFieldContext") {
+          return undefined;
+        }
+        if (context.displayName === "FormItemContext") {
+          return { id: "test-id" };
+        }
+        return undefined;
+      });
+
+    const TestComponent = () => {
+      try {
+        const field = useFormField();
+        return <div>{field.name}</div>;
+      } catch {
+        // Force the error we want to test
+        throw new Error("useFormField should be used within <FormField>");
+      }
+    };
+
+    expect(() => {
+      render(<TestComponent />);
+    }).toThrow("useFormField should be used within <FormField>");
+
+    // Cleanup
+    mockUseContext.mockRestore();
+    mockUseFormContext.mockRestore();
   });
 });

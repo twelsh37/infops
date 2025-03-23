@@ -54,7 +54,7 @@ The battle for truth in our information ecosystem represents one of the defining
 `;
 
   return (
-    <section id={id} className="py-24">
+    <section id={id} role="region" aria-label="About" className="py-24">
       <div className="container mx-auto px-4">
         <div className="prose prose-lg max-w-none">
           <MarkdownRenderer content={aboutContent} />

@@ -11,7 +11,7 @@ const ContactSection = ({ id }: ContactSectionProps) => {
         <h2 className="text-2xl font-bold mb-4 sm:text-3xl text-center">
           Contact
         </h2>
-        <form className="max-w-md mx-auto">
+        <form role="form" className="max-w-md mx-auto">
           <div className="mb-4">
             <label
               htmlFor="name"
